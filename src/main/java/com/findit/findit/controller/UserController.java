@@ -1,6 +1,7 @@
 
 package com.findit.findit.controller;
 
+import com.findit.findit.dto.UserLoginRequest;
 import com.findit.findit.dto.UserRegistrationRequest;
 import com.findit.findit.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -26,5 +27,13 @@ public class UserController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body("User registered successfully!");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestBody UserLoginRequest request) {
+
+        boolean isLoggedIn = userService.loginUser(request);
+
+        return ResponseEntity.ok("Login successful!");
     }
 }
